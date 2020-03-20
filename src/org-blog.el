@@ -61,16 +61,22 @@
                :subtitle (format "Published on %s"
                                  (org-export-get-date plist
                                                       org-blog-date-format))))
-  ;; Return a simple banner with navigation links
-  "<div class=\"banner\">
-    <a href=\"/\"> Ramblings from a Corner </a>
-  </div>
-  <ul class=\"banner-links\">
-    <li><a href=\"/archive.html\"> Posts </a> </li>
-    <li><a href=\"/archive.xml\"> RSS </a> </li>
-    <li><a href=\"/\"> About Me </a> </li>
-  </ul>
-  <hr>")
+ "    <nav class=\"navbar navbar-expand-md navbar-light fixed-top bg-primary\">
+      <a class=\"navbar-brand\" href=\"/\">bilus.dev</a>
+      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+        <span class=\"navbar-toggler-icon\"></span>
+      </button>
+      <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
+        <ul class=\"navbar-nav mr-auto\">
+          <li class=\"nav-item\">
+            <a class=\"nav-link\" href=\"/archive.html\">Posts <span class=\"sr-only\">(current)</span></a>
+          </li>
+          <li class=\"nav-item\">
+            <a class=\"nav-link\" href=\"/\">About me</a>
+          </li>
+        </ul>
+      </div>
+    </nav>")
 
 (defun org-blog-postamble (plist)
   "Post-amble for whole blog."

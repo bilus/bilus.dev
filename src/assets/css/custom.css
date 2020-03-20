@@ -1,194 +1,165 @@
-/* ----------------------------------CUSTOM---------------------------------- */
+
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
-    background-color: white;
-}
-
-.content-wrapper .col-sm-6 {
-    background-color: white;
-    box-shadow: 0px 1px 10px -3px #b97700;
-    margin-top: 0.3rem;
-    margin-bottom: 1rem;
-}
-
-#preamble {
-    font-family: Pacifico;
-    margin: auto;
-    font-size: 3rem;
-    padding-left: 10px;
-}
-
-#preamble > .banner-links {
-    list-style: none;
-    text-align: right;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-right: 10px;
-    font-size: 20px;
-    font-family: Amaranth;
-}
-
-.banner-links li {
-    display: inline-block;
-    margin-right: 1rem;
-}
-
-@media (max-width: 768px) {
-    #preamble {
-        font-size: 26px;
-    }
-
-    #preamble > .banner-links {
-        font-size: 15px;
-    }
-}
-
-div.banner > a {
-    color: #8a6f6f;
-    text-shadow: 0px 1px 1px #86714b;
-}
-
-ul.banner-links a {
-    color: darkblue;
-    text-shadow: 0px 1px 1px #86714b;
-}
-
-#preamble a:hover {
-    color: #8a6f6f;
-    text-shadow: 0px 1px 1px #135dbd;
-    text-decoration: none;
-}
-
-#preamble hr {
-    margin-top: 0.4rem;
-}
-
-footer {
-    font-family: Pacifico;
-    border-top: solid 2px black;
-    color: #555;
     font-size: 18px;
-    margin-top: 30px;
-    padding: 12px 0px 12px 0px;
-    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 105px;
 }
 
-ul.share-buttons{
-  list-style: none;
-  padding: 0;
-  float: right;
+nav.navbar.navbar-light.bg-primary {
+    background-color: teal!important;
+    height: 2em;
 }
 
-ul.share-buttons li{
-  display: inline;
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.resume {
-	width: 100%;
-	height: 948px;
+blockquote p {
+    font-size: 18px;
 }
 
-#content {
-    border-left: 1px solid #eeeeee;
-    border-right: 1px solid #eeeeee;
-    padding-left: 1rem;
+pre {
+    font-size: 16px;
 }
 
-#content header {
-    text-align: center;
+.footpara {
+    display: inline-block;
 }
 
-#content div {
-    font-family: 'Bree Serif', serif;
-	background-color: white;
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
 }
 
-#content p {
-    /* Remove Handlee and keep Libre Baskerville if you want something less*/
-    /* fancy and maybe more readable. */
-    font-family: Libre Baskerville;
-    color: #125;
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
 }
 
-#postamble > footer {
-    width: 40%;
-    margin: auto;
-}
-
-footer > a {
-    color: #555;
-}
-
-#view-source-link {
-    font-size: 8px;
-    color: grey;
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
     display: block;
-
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
 }
-
-#i-emacs {
-    height: 30px;
-    width: 30px;
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
 }
-
-#i-heart {
-    viewBox: 0 0 32 32;
-    width: 20px;
-    height: 20px;
-    stroke: black;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2px;
-    fill: red;
-}
-
-/* Thanks to advent of code */
-em {
-    text-shadow: 0 0 5px #555555;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Amaranth', sans-serif;
-}
-
-.archive {
-    list-style: none;
-}
-
-.archive-date {
-    color: #77500a;
-    /* A hack to make all dates align */
-    font-family: monospace;
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
     font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
 }
 
-.archive-item {
-    font-size: 1.25rem;
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
 }
 
-.archive-item > a {
-    margin-left: 0.5em;
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
 }
 
-.all-posts-link {
-    font-size: 1.5em;
-    text-align: left;
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
 }
-
-div.outline-2, div.outline-3 {
-    margin: 0.3rem;
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
 }
 
 .org-src-container {
-    border-width: 1px;
-    border-color: #cbccb8;
-    border-style: solid;
-    padding: 0.5rem;
-    border-radius: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    background-color: black;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin-bottom: 1em;
 }
 
-.subtitle {
-    font-style: italic;
-    font-size: xx-small;
+.org-src-container pre {
+    color: #c1bebe;
 }

@@ -1,7 +1,6 @@
-"#+TITLE: Blogging with Org publishing
+#+TITLE: Blogging with Org publishing
 #+DATE: [2018-09-08 Sat 14:40]
 #+AUTHOR: Narendra Joshi
-
 
 This post talks about my blogging setup. I am using simple plain org-publishing
 for blogging here. There is a link to the complete source in the footer. I

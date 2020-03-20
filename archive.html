@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-20 Fri 20:07 -->
+<!-- 2020-03-20 Fri 21:33 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Blog Posts</title>
@@ -17,15 +17,22 @@
 <div class="content-wrapper container">
    <div class="row"> <div class="col"> </div>   <div class="col-sm-12 col-md-10 col-lg-10">
 <div id="preamble" class="status">
-<div class="banner">
-    <a href="/"> Ramblings from a Corner </a>
-  </div>
-  <ul class="banner-links">
-    <li><a href="/archive.html"> Posts </a> </li>
-    <li><a href="/archive.xml"> RSS </a> </li>
-    <li><a href="/"> About Me </a> </li>
-  </ul>
-  <hr>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="/">bilus.dev</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/archive.html">Posts <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">About me</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 </div>
 <div id="content">
 <header>
@@ -35,7 +42,6 @@
 <li> <span class="archive-item"><span class="archive-date"> Mar 20, 2020 </span> <a href="posts/sitemap.html">Sitemap for project posts</a> </span> </li>
 <li> <span class="archive-item"><span class="archive-date"> Mar 20, 2020 </span> <a href="posts/src/archive.html">Blog Posts</a> </span> </li>
 <li> <span class="archive-item"><span class="archive-date"> Mar 20, 2020 </span> <a href="posts/src/index.html">index</a> </span> </li>
-<li> <span class="archive-item"><span class="archive-date"> Oct 14, 2018 </span> <a href="posts/generalized-authz.html">Modeling Authorization</a> </span> </li>
 <li> <span class="archive-item"><span class="archive-date"> Sep 08, 2018 </span> <a href="posts/blogging-with-org.html">Blogging with Org publishing</a> </span> </li>
 <li> <span class="archive-item"><span class="archive-date"> Sep 01, 2018 </span> <a href="posts/sieve-of-erators.html">Sieve of Eratosthenes</a> </span> </li>
 <li> <span class="archive-item"><span class="archive-date"> Aug 01, 2018 </span> <a href="posts/lcm-hcf-as-ops-on-sets.html">LCM, HCF and Sets</a> </span> </li>

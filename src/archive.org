@@ -5,7 +5,6 @@
 @@html:<li>@@ @@html:<span class="archive-item"><span class="archive-date">@@ Mar 20, 2020 @@html:</span>@@ [[file:posts/sitemap.org][Sitemap for project posts]] @@html:</span>@@ @@html:</li>@@
 @@html:<li>@@ @@html:<span class="archive-item"><span class="archive-date">@@ Mar 20, 2020 @@html:</span>@@ [[file:posts/src/archive.org][Blog Posts]] @@html:</span>@@ @@html:</li>@@
 @@html:<li>@@ @@html:<span class="archive-item"><span class="archive-date">@@ Mar 20, 2020 @@html:</span>@@ [[file:posts/src/index.org][index]] @@html:</span>@@ @@html:</li>@@
-@@html:<li>@@ @@html:<span class="archive-item"><span class="archive-date">@@ Oct 14, 2018 @@html:</span>@@ [[file:posts/generalized-authz.org][Modeling Authorization]] @@html:</span>@@ @@html:</li>@@
 @@html:<li>@@ @@html:<span class="archive-item"><span class="archive-date">@@ Sep 08, 2018 @@html:</span>@@ [[file:posts/blogging-with-org.org][Blogging with Org publishing]] @@html:</span>@@ @@html:</li>@@
 @@html:<li>@@ @@html:<span class="archive-item"><span class="archive-date">@@ Sep 01, 2018 @@html:</span>@@ [[file:posts/sieve-of-erators.org][Sieve of Eratosthenes]] @@html:</span>@@ @@html:</li>@@
 @@html:<li>@@ @@html:<span class="archive-item"><span class="archive-date">@@ Aug 01, 2018 @@html:</span>@@ [[file:posts/lcm-hcf-as-ops-on-sets.org][LCM, HCF and Sets]] @@html:</span>@@ @@html:</li>@@

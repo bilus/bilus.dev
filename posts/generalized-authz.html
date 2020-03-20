@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-03-20 Fri 20:05 -->
+<!-- 2020-03-20 Fri 20:36 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Modeling Authorization</title>
@@ -79,51 +79,326 @@ The diagram below illustrates how a request is authorized using a model
 based on PERM.
 </p>
 
-<div class="org-src-container">
-<pre class="src src-ditaa" id="org6780f76">                                                      /-----------+
-                                                      |           |
-                                                      | Policy 1  |
-                                                      |   cFDA    |
-                                                      +-----------/
-                                                            |
-                                                            v
-                                                     +-------------+        +-----------+
-                                                     |     cF54    |        |           |
-                                       +------------&gt;|   Matcher   |--------+ Policy 1  +-----------+
-                                       |             |     exp     |        |  Effect   |           |
-                                       |             |             |        |   c282    |           |
-                                       |             +-------------+        +-----------+           |
-                                       |                                                            |
-                                       |             /-----------+                                  |
-                                       |             |           |                                  |
-                                       |             | Policy 2  |                                  |
-                                       |             |   cFDA    |                                  |
-                                       |             +-----------/                                  |          +--------------+
-                                       |                   |                                        |          |              |
-                                       |                   v                                        |          |              |     +---------------------+
-  +----------------------------+       |             +-------------+        +-----------+           +---------&gt;|              |     |                     |
-  |                            |       |             |    cF54     |        |           |                      |   Effect     |----&gt;| Result (true/false) |
-  | Request {sub, verb, action}+-------|------------&gt;|   Matcher   |--------+  Policy 2 +---------------------&gt;|  Expression  |     |      c8E8           |
-  |         c18F               |       |             |     exp     |        |   Effect  |                      |   cFDA       |     +---------------------+
-  +----------------------------+       |             |             |        |    c841   |           +---------&gt;|              |
-                                       |             +-------------+        +-----------+           |          |              |
-                                       |                                                            |          +--------------+
-                                       |                                                            |
-                                       |              /-----------+                                 |
-                                       |              |           |                                 |
-                                       |              | Policy 3  |                                 |
-                                       |              |   cFDA    |                                 |
-                                       |              +-----------/                                 |
-                                       |                    |                                       |
-                                       |                    v                                       |
-                                       |             +-------------+        +-----------+           |
-                                       |             |     cF54    |        |           |           |
-                                       +------------&gt;|   Matcher   |--------+  Policy 3 +-----------+
-                                                     |     exp     |        |   Effect  |
-                                                     |             |        |    c2C2   |
-                                                     +-------------+        +-----------+
-</pre>
-</div>
+<p>
+,#+name: A image describing PERM meta-model
+,#+begin<sub>src</sub> ditaa :file ../assets/data/perm.png
+                                                      /------&#x2013;&#x2014;+
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Policy 1</td>
+</tr>
+
+<tr>
+<td class="org-left">cFDA</td>
+</tr>
+</tbody>
+</table>
+<p>
++------&#x2013;&#x2014;/
+</p>
+<table>
+
+
+<tbody>
+<tr>
+</tr>
+</tbody>
+</table>
+<p>
+       v
+<del>-------------</del>        <del>-----------</del>
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">cF54</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>-------&#x2013;&#x2014;&gt;|   Matcher   |--------</del> Policy 1  <del>-----------</del>
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">exp</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Effect</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">c282</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><del>-------------</del>        <del>-----------</del></td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">/------&#x2013;&#x2014;+</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Policy 2</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">cFDA</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">+------&#x2013;&#x2014;/</td>
+<td class="org-left"><del>--------------</del></td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><del>---------------------</del></td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>----------------------------</del>       |             <del>-------------</del>        <del>-----------</del>           +----&#x2013;&#x2014;&gt;|              |     |                     |
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">cF54</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Effect</td>
+<td class="org-left">-&#x2014;&gt;</td>
+<td class="org-left">Result (true/false)</td>
+</tr>
+
+<tr>
+<td class="org-left">Request {sub, verb, action}+-------</td>
+<td class="org-left">-------&#x2013;&#x2014;&gt;</td>
+<td class="org-left">Matcher</td>
+<td class="org-left">---&#x2013;&#x2014;+  Policy 2 +----------------&#x2013;&#x2014;&gt;</td>
+<td class="org-left">Expression</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">c8E8</td>
+</tr>
+
+<tr>
+<td class="org-left">c18F</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">exp</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Effect</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">cFDA</td>
+<td class="org-left"><del>---------------------</del></td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>----------------------------</del>       |             |             |        |    c841   |           +----&#x2013;&#x2014;&gt;|              |
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><del>-------------</del>        <del>-----------</del></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><del>--------------</del></td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">/------&#x2013;&#x2014;+</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Policy 3</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">cFDA</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">+------&#x2013;&#x2014;/</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v</td>
+</tr>
+
+<tr>
+<td class="org-left"><del>-------------</del>        <del>-----------</del></td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">cF54</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>-------&#x2013;&#x2014;&gt;|   Matcher   |--------</del>  Policy 3 <del>-----------</del>
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">exp</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Effect</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">c2C2</td>
+</tr>
+</tbody>
+</table>
+<p>
+                                                     <del>-------------</del>        <del>-----------</del>
+#+end<sub>src</sub>
+</p>
+
+
+<figure>
+<a href="../assets/data/perm.png" width="100%"><img src="../assets/data/perm.png" alt="perm.png" width="100%"></a>
+
+</figure>
 </div>
 </div>
 
