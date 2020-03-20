@@ -1,0 +1,36 @@
+#+TITLE: A Venture into Reactive Programming
+* Introduction
+Recently, I explored two libraries/frameworks - ~RxClojure~ (Reactive
+Extensions for Clojure) and ~Reactive Banana~ (an implementation of Functional
+Reactive Programming (aka FRP) in Haskell). This post documents my experience
+learning FRP and related concepts, e.g. Reactive Programming.
+
+If you find something that is factually incorrect, feel free to email
+me.
+
+* What is [Functional] Reactive Programming?
+Functional Reactive Programming concerns itself with modelling values that
+change over time. FRP doesn't limit its specification based on the fact that
+currently available computers cannot model continuous time. I highly recommend
+watching [[https://www.youtube.com/watch?v=j3Q32brCUAI][The Essence and Origins of Functional Reactive Programming]].
+
+Reactive Programming (as implemented by Reactive Extensions) concerns itself
+with discrete streams of values (termed as ~Observables~). An ~Observable~ here
+is the dual of an ~Iterable~ in the sense that an ~Observable~ pushes
+information to its observers. A consumer for an ~Interable~ pulls values by
+calling ~next~ (or similar method) on it.
+
+* Going Back to the Roots
+
+* Implementations
+I am going to talk mainly about two implementations here as these are only ones
+I have some experience with.
+
+* An example
+I wrote a simple game using RxClojure and ~reactive-banana~. The source is at
+https://gitlab.com/narendraj9/board-game It's well-documented for some
+definition of good documentation.
+
+* Conclusion
+Functional Reactive Programming aims to model precisely behaviour of entities
+in a program as functions of continuous time.

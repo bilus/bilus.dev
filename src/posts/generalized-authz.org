@@ -1,0 +1,162 @@
+#+TITLE: Modeling Authorization
+#+DATE: [2018-10-14 Sun 01:59]
+#+AUTHOR: I321472
+
+Most applications need to take care of authorization. Authorization is the
+answer to the question of whether a request is permitted or not. We will look
+at different models of authorization using a meta-model in this article. I am
+going to use [[https://casbin.org/][Casbin]] for concrete examples. You can experiment with example
+model definitions using [[https://casbin.org/editor/][Casbin Model Editor]].
+
+* PERM Meta-Model
+An instance of PERM (Policy, Effect, Request, Matchers) describes how these four
+kinds of entities interact with each other to build something that can used for
+authorization. First let's describe each of these entities and then look at an
+example model built using them.
+
+- Request :: Information about the access request. A simple request would be a
+             tuple with the subject, action and the resource.
+             A concrete request model can have resources such as
+             [[https://github.com/intel/rmd][physical hardware components like CPU caches]] or logical entities
+             built out of persisted data like customers in a CRM system.
+             ~r = {sub, action, resource}~
+- Policy :: A model of what can constitute a rule in the system, e.g., an
+            administrator should be allowed to read user info.
+            ~p = {sub, action, resource}~
+- Matchers :: A model of how requests and policies are matched.
+              The simplest example would be using equality for matching
+              requests and policies if the above models for those are used.
+              ~m = r.sub == p.sub && r.action == p.action && r.resource == p.resource~
+              Given a request, a value is produced for every policy using this
+              matcher expression. So, we have a =p.eft= value for every policy
+              in our policy set. We haven't defined instances of policies
+              yet. We have only defined how those instances would look like,
+              i.e. the policy model.
+- Effect :: A model for combining/reducing policies that match a given request
+            to a final result. Value of evaluating the matcher expression is
+            available in =eft= field in every policy.
+            ~e = some(p.eft == allow)~
+
+The diagram below illustrates how a request is authorized using a model
+based on PERM.
+
+#+begin_src ditaa :file ../assets/data/perm.png
+#+end_src
+
+,#+name: A image describing PERM meta-model
+,#+begin_src ditaa :file ../assets/data/perm.png
+                                                      /-----------+
+                                                      |           |
+                                                      | Policy 1  |
+                                                      |   cFDA    |
+                                                      +-----------/
+                                                            |
+                                                            v
+                                                     +-------------+        +-----------+
+                                                     |     cF54    |        |           |
+                                       +------------>|   Matcher   |--------+ Policy 1  +-----------+
+                                       |             |     exp     |        |  Effect   |           |
+                                       |             |             |        |   c282    |           |
+                                       |             +-------------+        +-----------+           |
+                                       |                                                            |
+                                       |             /-----------+                                  |
+                                       |             |           |                                  |
+                                       |             | Policy 2  |                                  |
+                                       |             |   cFDA    |                                  |
+                                       |             +-----------/                                  |          +--------------+
+                                       |                   |                                        |          |              |
+                                       |                   v                                        |          |              |     +---------------------+
+  +----------------------------+       |             +-------------+        +-----------+           +--------->|              |     |                     |
+  |                            |       |             |    cF54     |        |           |                      |   Effect     |---->| Result (true/false) |
+  | Request {sub, verb, action}+-------|------------>|   Matcher   |--------+  Policy 2 +--------------------->|  Expression  |     |      c8E8           |
+  |         c18F               |       |             |     exp     |        |   Effect  |                      |   cFDA       |     +---------------------+
+  +----------------------------+       |             |             |        |    c841   |           +--------->|              |
+                                       |             +-------------+        +-----------+           |          |              |
+                                       |                                                            |          +--------------+
+                                       |                                                            |
+                                       |              /-----------+                                 |
+                                       |              |           |                                 |
+                                       |              | Policy 3  |                                 |
+                                       |              |   cFDA    |                                 |
+                                       |              +-----------/                                 |
+                                       |                    |                                       |
+                                       |                    v                                       |
+                                       |             +-------------+        +-----------+           |
+                                       |             |     cF54    |        |           |           |
+                                       +------------>|   Matcher   |--------+  Policy 3 +-----------+
+                                                     |     exp     |        |   Effect  |
+                                                     |             |        |    c2C2   |
+                                                     +-------------+        +-----------+
+#+end_src
+
+#+ATTR_HTML: :width 100%
+#+RESULTS: A image describing PERM meta-model
+[[file:../assets/data/perm.png][file:../assets/data/perm.png]]
+
+* Model Definitions
+Here is the complete model definition for ACL-based authorization:
+
+#+name: ACL based authz model
+#+begin_src conf :results verbatim drawer
+[request_definition]
+r = sub, obj, act
+
+[policy_definition]
+p = sub, obj, act
+
+[policy_effect]
+e = some(where (p.eft == allow))
+
+[matchers]
+m = r.sub == p.sub && r.obj == p.obj && r.act == p.act
+#+end_src
+
+For such a model, the policies that define authorization rules will look like
+#+name: Policies for ACL
+#+begin_src conf :results verbatim drawer
+p, alice, data1, read
+p, bob, data2, write
+#+end_src
+
+
+If we wish to allow everything to the =admin= user, all we need to change is
+the definition of the matcher:
+#+name: New matcher allowing admin users everything
+#+begin_src conf :results verbatim drawer
+[matchers]
+m = r.sub == admin || (r.sub == p.sub && r.obj == p.obj && r.act == p.act)
+#+end_src
+
+To enable simple attribute based access control, we need access to the actual
+data in the resource object. For example if we only want to allow requests
+which are initiated by the owner of the resource, the matcher expression would
+change to:
+
+#+name: New matcher for simple attribute based access control
+#+begin_src conf :results verbatim drawer
+m = r.obj.owner == r.sub && (r.sub == p.sub && r.obj == p.obj && r.act == p.act)
+#+end_src
+
+The PERM meta-model is flexible enough to allow us to switch to complex
+authorization models even if we start with a simple model in the
+beginning. An extension of the PERM model would be to allow materialized views
+of the resource based on policies. This requires that the final result is a
+resource rather than a boolean value. This might seem like a good idea in the
+beginning but it seems to be mixing two different ideas:
+- Allowing access to a resource
+- Building an instance of a logical resource based on constraints or the
+  context.
+
+For example, let's say a hypothetical SaaS company needs to manage credits for
+multiple applications that register themselves on their platform (Ola credits,
+Uber credits). There can be a field in the User resource, say =credits=, which
+has a list of credits (logically) for all these applications. Now, we must
+ensure that credits for one application are not visible to any other
+application. All applications have access to all other fields but this field
+needs to be filtered. In my opinion, this field should have never been designed
+such that it ends up with data for all applications while building the User
+object/map/representation in memory. Share your thoughts about this in the
+comments below.
+
+* Conclusion
+PERM is a flexible meta-model for building authorization models.

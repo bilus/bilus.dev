@@ -1,0 +1,80 @@
+#+TITLE: Emac: Quick Hacks
+#+DATE: [2018-07-01 Sat]
+#+AUTHOR: Narendra Joshi
+* Intro
+:PROPERTIES:
+:ID:       da3c972c-02a3-4217-bdf9-d3adcd31f36b
+:PUBDATE:  <2017-12-31 Sun 18:14>
+:END:
+I spend most of my time inside Emacs ― the truly extensible environment. I keep
+adding new functions/commands to my Emacs configuration that help me accomplish
+just about anything I would like to. In this post, I am sharing with you two
+such functions.
+* Code
+:PROPERTIES:
+:ID:       a2d1467f-8070-4d5f-b491-c9a80a038888
+:PUBDATE:  <2017-12-31 Sun 18:14>
+:END:
+#+begin_src emacs-lisp :session vicarious :exports both :results output
+  (defun do-when-idle (f g interval)
+    "Call F when idle for INTERVAL seconds and then G when there is activity.
+  Thanks to Michael Heerdegen <michael_heerdegen@web.de>."
+    (letrec ((run-timer-fun (lambda ()
+                              (run-with-idle-timer interval
+                                                   nil
+                                                   (lambda ()
+                                                     (funcall f)
+                                                     (add-hook 'post-command-hook
+                                                               activity-fun)))))
+             (activity-fun (lambda ()
+                             (remove-hook 'post-command-hook activity-fun)
+                             (funcall g)
+                             (funcall run-timer-fun))))
+      (funcall run-timer-fun)))
+#+end_src
+I use the above function for things like
+#+name: `do-when-idle` usage
+#+begin_src emacs-lisp  :session vicarious :exports both :results output
+  (do-when-idle #'coin-ticker-mode
+                (lambda ()
+                  (coin-ticker-mode -1))
+                60)
+#+end_src
+
+#+begin_src emacs-lisp :session vicarious :exports both :results output
+  (defvar limit-usage (make-hash-table :test 'equal))
+  (defun limit-usage (command max-minutes)
+    "Limit usage of COMMAND to only once in MAX-MINUTES."
+    (advice-add command
+                :around
+                `(lambda (orig-fn &rest args)
+                   (let* ((hash-key ,(symbol-name command))
+                          (last-ts (gethash hash-key limit-usage))
+                          (gap-in-minutes (and last-ts
+                                               (/ (time-to-seconds
+                                                   (time-subtract (current-time)
+                                                                  last-ts))
+                                                  60))))
+                     (if (and gap-in-minutes (< gap-in-minutes ,max-minutes))
+                         (message "Last Accessed: %s Time to go: %.2f minutes"
+                                  (format-time-string "%FT%T%z" last-ts)
+                                  (- ,max-minutes gap-in-minutes))
+                       (apply orig-fn args)
+                       (puthash hash-key (current-time) limit-usage))))))
+
+#+end_src
+
+I use the above function for limiting how frequently I check email:
+#+begin_src emacs-lisp  :session vicarious :exports both :results output
+;; Check mail not more than once every 4 hour.
+(limit-usage #'gnus (* 4 60))
+#+end_src
+* Conclusion
+:PROPERTIES:
+:ID:       8fa034d7-b883-48ba-8d10-aa446216bd45
+:PUBDATE:  <2017-12-31 Sun 18:14>
+:END:
+Emacs is configurable in almost every aspect. Besides the advantages, the only
+problem with it is that it encourages dislike for the defaults. This costs me
+some time every week if not everyday. Being customizable to the core, it
+demands a lot of time to be spent on it before it becomes useable.

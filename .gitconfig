@@ -1,0 +1,18 @@
+[user]
+	name = Narendra Joshi
+	email = narendraj9@vicarie.in
+[color]
+	ui = true
+[core]
+	editor = emacsclient -c
+    pager = less -+F
+[credential]
+	helper = cache
+[alias]
+	st = status
+	b = branch
+	co = checkout
+[github]
+    user = narendraj9
+[push]
+	default = simple
