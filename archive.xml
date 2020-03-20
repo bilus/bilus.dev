@@ -16,8 +16,8 @@
   <link>http://bilus.dev/</link>
   <description><![CDATA[]]></description>
   <language>en</language>
-  <pubDate>Fri, 20 Mar 2020 21:34:02 +0100</pubDate>
-  <lastBuildDate>Fri, 20 Mar 2020 21:34:02 +0100</lastBuildDate>
+  <pubDate>Sat, 21 Mar 2020 00:22:59 +0100</pubDate>
+  <lastBuildDate>Sat, 21 Mar 2020 00:22:59 +0100</lastBuildDate>
   <generator>Emacs 26.3 Org-mode 9.4</generator>
   <webMaster>gyamtso@gmail.com (Marcin Bilski)</webMaster>
   <image>
@@ -28,13 +28,7 @@
 
   <div class="archive">
     <p>
-      <li> <span class="archive-item"><span class="archive-date"> Mar 20, 2020 </span> <a href="posts/sitemap.html">Sitemap for project posts</a> </span> </li>
-      <li> <span class="archive-item"><span class="archive-date"> Mar 20, 2020 </span> <a href="posts/src/archive.html">Blog Posts</a> </span> </li>
-      <li> <span class="archive-item"><span class="archive-date"> Mar 20, 2020 </span> <a href="posts/src/index.html">index</a> </span> </li>
-      <li> <span class="archive-item"><span class="archive-date"> Sep 08, 2018 </span> <a href="posts/blogging-with-org.html">Blogging with Org publishing</a> </span> </li>
-      <li> <span class="archive-item"><span class="archive-date"> Sep 01, 2018 </span> <a href="posts/sieve-of-erators.html">Sieve of Eratosthenes</a> </span> </li>
-      <li> <span class="archive-item"><span class="archive-date"> Aug 01, 2018 </span> <a href="posts/lcm-hcf-as-ops-on-sets.html">LCM, HCF and Sets</a> </span> </li>
-      <li> <span class="archive-item"><span class="archive-date"> Jul 01, 2018 </span> <a href="posts/quick-emacs-hacks.html">Emac: Quick Hacks</a> </span> </li>
+      <li> <span class="archive-item"><span class="archive-date"> Mar 20, 2020 </span> <a href="posts/first_post.html">First post</a> </span> </li>
     </p>
 
   </div>
