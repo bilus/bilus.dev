@@ -1,0 +1,37 @@
+#+TITLE: Pg Wal
+
+Alternatives:
+https://www.postgresql.eu/events/pgconfeu2019/sessions/session/2651/slides/237/Deploy%20your%20own%20replication%20system%20with%20Wal2json.pdf
+https://github.com/blind-oracle/psql-streamer
+https://streamsets.com/documentation/datacollector/3.5.1/help/datacollector/UserGuide/Origins/Origins_title.html
+
+#+BEGIN_SRC sh :session install
+go get -u github.com/Nextdoor/pg-bifrost/main
+cd ~/go/1.14.1/github.com/Nextdoor/pg-bifrost
+make build_mac
+cd target/pg-bifrost /usr/local/bin
+#+END_SRC
+
+Enable wal replication in
+#+BEGIN_SRC
+psql -U postgres -c 'SHOW config_file'
+#+END_SRC
+
+Modify postgresql.config
+#+BEGIN_SRC
+wal_level=logical
+#+END_SRC
+
+#+BEGIN_SRC
+psql -U postgres -c 'SHOW data_directory'
+#+END_SRC
+
+#+BEGIN_SRC
+pg_ctl reload -D /var/lib/postgresql/data/
+#+END_SRC
+
+Modify pg_hba.conf
+
+#+BEGIN_SRC
+host         all            all             db_replica_private_ip_address/32      md5
+#+END_SRC

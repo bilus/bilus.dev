@@ -1,0 +1,59 @@
+#+TITLE: Plan
+
+* April 2020
+** Blog ready
+*** DONE Deployable
+*** TODO Better look
+https://colorlib.com/wp/template/suppablog/
+https://moozthemes.com/iconic-names-every-designer-should-know-about/
+https://colorlib.com/etc/suppablog/single.html
+*** TODO Blog name
+*** TODO Privacy policy
+*** TODO RSS feed
+*** TODO Google Analytics
+*** TODO Commenting system
+https://www.bootstrapzero.com/bootstrap-template/renda-theme
+** Spend 30 minutes a day researching
+** Spend 15 mintues a day writing
+
+* December 2020
+** Earn $200 from the bloog
+
+* Niche ideas
+** Scaling for mere mortals
+Learn how to build solution handling serious workloads even if you're
+not Google.
+You don't have to be Google...
+
+Developers that need to scale up their solutions to large but not Facebook-scale
+loads using simple but reliable tools.
+*** Posts
+**** Scaling geographical queries (Broadcasts API)
+**** Scaling reads using pg-bifrost + rabbitmq + cony + redis
+**** Scaling data processing with gleam
+**** Scaling historical data queries
+***** dbt + Bigquery
+***** pg-bifrost + cony + Bigquery
+**** Scaling business workflows using Cadence
+*** Theme: backend development
+*** Topics
+**** Golang
+**** Kubernetes
+**** Data processing
+**** Optimization
+**** User-friendly libraries
+** Reviews of Go libraries -- User-friendly libraries
+Learn about Golang libraries you've never heard about and how good they are.
+Find libraries & put them together to solve an interesting problem.
+Toys in the Attic * * * *
+*** Tracking coronavirus cases
+*** Analyzing data (WAL)
+https://github.com/Nextdoor/pg-bifrost/
+Alternative: https://github.com/tmc/pqstream
+*** Cadence for large scale something pg-bifrost?
+*** Try out Okteto
+https://github.com/okteto/okteto
+*** Using H3 to...
+
+** About practicalities of running systems "Ivory Towers Architects"
+*** Analyzing data in Postgres (dbt + federated queries)
