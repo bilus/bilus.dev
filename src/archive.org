@@ -1,6 +1,0 @@
-#+TITLE: Blog Posts
-
-
-#+begin_archive
-@@html:<li>@@ @@html:<span class="archive-item"><span class="archive-date">@@ Mar 20, 2020 @@html:</span>@@ [[file:posts/first_post.org][First post]] @@html:</span>@@ @@html:</li>@@
-#+end_archive

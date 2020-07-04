@@ -1,5 +1,0 @@
-#+TITLE: First post
-#+DATE: [2020-03-20 Fri 22:40]
-#+AUTHOR: Marcin Bilski
-
-TBD

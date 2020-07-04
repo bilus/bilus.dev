@@ -1,0 +1,17 @@
+* README
+
+** Contributing
+1. Open file://BLOG.org
+2. `SPC :` `org-hugo-auto-export-mode`
+3. Make changes.
+
+** Live preview
+1. Make sure `org-hugo-auto-export-mode` is on
+2. ~oya run serve~
+3. ~open localhost:1313~
+
+** Publishing
+1. ~oya run publish~
+2. Edit the commit message.
+
+This pushes to the `gh-pages` branch.

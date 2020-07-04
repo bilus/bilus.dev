@@ -1,9 +1,0 @@
-#+TITLE: Distributed Snapshots
-#+DATE: [2018-09-15 Sat 12:41]
-#+AUTHOR: Narendra Joshi
-* Introduction
-* Why take snapshots?
-* Snapshots in the blink of an eye
-* Snapshots taken over a period of time
-* Globally Consistent Snapshots
-* Conclusion
