@@ -8,6 +8,7 @@ https://colorlib.com/wp/template/suppablog/
 https://moozthemes.com/iconic-names-every-designer-should-know-about/
 https://colorlib.com/etc/suppablog/single.html
 *** TODO Blog name
+Sharpening tools
 *** TODO Privacy policy
 *** TODO RSS feed
 *** TODO Google Analytics

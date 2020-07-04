@@ -12,18 +12,18 @@
      xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:media="http://search.yahoo.com/mrss/"><channel>
   <title>Blog Posts</title>
-  <atom:link href="http://bilus.dev/archive.xml" rel="self" type="application/rss+xml" />
-  <link>http://bilus.dev/</link>
+  <atom:link href="https://bilus.dev/archive.xml" rel="self" type="application/rss+xml" />
+  <link>https://bilus.dev/</link>
   <description><![CDATA[]]></description>
   <language>en</language>
-  <pubDate>Sat, 21 Mar 2020 00:22:59 +0100</pubDate>
-  <lastBuildDate>Sat, 21 Mar 2020 00:22:59 +0100</lastBuildDate>
+  <pubDate>Thu, 26 Mar 2020 09:54:40 +0100</pubDate>
+  <lastBuildDate>Thu, 26 Mar 2020 09:54:40 +0100</lastBuildDate>
   <generator>Emacs 26.3 Org-mode 9.4</generator>
   <webMaster>gyamtso@gmail.com (Marcin Bilski)</webMaster>
   <image>
     <url>https://orgmode.org/img/org-mode-unicorn-logo.png</url>
     <title>Blog Posts</title>
-    <link>http://bilus.dev/</link>
+    <link>https://bilus.dev/</link>
   </image>
 
   <div class="archive">

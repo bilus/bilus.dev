@@ -46,12 +46,21 @@
 
 (defvar org-blog-head
   "
-  <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\" integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\">
-  <link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/css/custom.css\"/>
-  <link rel=\"stylesheet\" type=\"text/css\" href=\"https://fonts.googleapis.com/css?family=Amaranth|Handlee|Libre+Baskerville|Bree+Serif|Ubuntu+Mono|Pacifico&subset=latin,greek\"/>
-  <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"favicon.ico\">
-"
-  )
+  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">
+  <meta name=\"description\" content=\"TODO: description\" />
+  <meta name=\"keywords\" content=\"HTML, CSS, JavaScript, PHP\" />
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\">
+
+  <link rel=\"shortcut icon\" href=\"images/favicon.png\" />
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700%7CLibre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
+  <link rel=\"stylesheet\" type=\"text/css\"  href='/assets/css/clear.css' />
+  <link rel=\"stylesheet\" type=\"text/css\"  href='/assets/css/common.css' />
+  <link rel=\"stylesheet\" type=\"text/css\"  href='/assets/css/font-awesome.min.css' />
+  <link rel=\"stylesheet\" type=\"text/css\"  href='/assets/css/carouFredSel.css' />
+  <link rel=\"stylesheet\" type=\"text/css\"  href='/assets/css/sm-clean.css' />
+  <link rel=\"stylesheet\" type=\"text/css\"  href='/assets/css/suppablog.css' />
+  <link rel=\"stylesheet\" type=\"text/css\"  href='/assets/css/custom.css' />
+  ")
 
 (defun org-blog-preamble (plist)
   "Pre-amble for whole blog."
@@ -61,28 +70,98 @@
                :subtitle (format "Published on %s"
                                  (org-export-get-date plist
                                                       org-blog-date-format))))
- "    <nav class=\"navbar navbar-expand-md navbar-light fixed-top bg-primary\">
-      <a class=\"navbar-brand\" href=\"/\">bilus.dev</a>
-      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-        <span class=\"navbar-toggler-icon\"></span>
-      </button>
-      <div class=\"collapse navbar-collapse\" id=\"navbarCollapse\">
-        <ul class=\"navbar-nav mr-auto\">
-          <li class=\"nav-item\">
-            <a class=\"nav-link\" href=\"/archive.html\">Posts <span class=\"sr-only\">(current)</span></a>
-          </li>
-          <li class=\"nav-item\">
-            <a class=\"nav-link\" href=\"/\">About me</a>
-          </li>
-        </ul>
-      </div>
-    </nav>")
+    "
+
+    <!-- Preloader Gif -->
+    <table class=\"doc-loader\">
+        <tbody>
+            <tr>
+                <td>
+                    <img src=\"images/ajax-document-loader.gif\" alt=\"Loading...\">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Left Sidebar -->
+    <div id=\"sidebar\" class=\"sidebar\">
+        <div class=\"menu-left-part\">
+            <!-- <div class=\"search-holder\">
+                  <label>
+                  <input type=\"search\" class=\"search-field\" placeholder=\"Type here to search...\" value=\"\" name=\"s\" title=\"Search for:\">
+                  </label>
+                  </div> -->
+            <div class=\"site-info-holder\">
+                <div class=\"site-title\">TODO: Title</div>
+                <p class=\"site-description\">
+                    TODO: Description
+                </p>
+            </div>
+            <nav id=\"header-main-menu\">
+                <ul class=\"main-menu sm sm-clean\">
+                    <li><a href=\"scroll.html\">Posts</a></li>
+                    <li><a href=\"about.html\">About me</a></li>
+                </ul>
+            </nav>
+            <footer>
+                <div class=\"footer-info\">
+                    © 2018 SUPPABLOG HTML TEMPLATE. <br> CRAFTED WITH <i class=\"fa fa-heart\"></i> BY <a href=\"https://colorlib.com\">COLORLIB</a>.
+                </div>
+            </footer>
+        </div>
+        <div class=\"menu-right-part\">
+            <div class=\"logo-holder\">
+                <a href=\"index.html\">
+                    <img src=\"images/logo.png\" alt=\"Suppablog WP\">
+                </a>
+            </div>
+            <div class=\"toggle-holder\">
+                <div id=\"toggle\">
+                    <div class=\"menu-line\"></div>
+                </div>
+            </div>
+            <div class=\"social-holder\">
+                <div class=\"social-list\">
+                    <!-- <a href=\"#\"><i class=\"fa fa-twitter\"></i></a>
+                          <a href=\"#\"><i class=\"fa fa-youtube-play\"></i></a>
+                          <a href=\"#\"><i class=\"fa fa-facebook\"></i></a>
+                          <a href=\"#\"><i class=\"fa fa-vimeo\"></i></a>
+                          <a href=\"#\"><i class=\"fa fa-behance\"></i></a> -->
+                    <a href=\"#\"><i class=\"fa fa-rss\"></i></a>
+                    <a href=\"#\"><i class=\"fa fa-github\"></i></a>
+                </div>
+            </div>
+            <div class=\"fixed scroll-top\"><i class=\"fa fa-caret-square-o-up\" aria-hidden=\"true\"></i></div>
+        </div>
+        <div class=\"clear\"></div>
+    </div>
+
+    <!-- Single Content -->
+    <div id=\"content\" class=\"site-content center-relative\">
+    <div class=\"single-post-wrapper content-1070 center-relative\">
+
+        <article class=\"center-relative\">")
 
 (defun org-blog-postamble (plist)
   "Post-amble for whole blog."
   (concat
-   "<footer class=\"footer\">
-    </footer>"
+   "
+            </article>
+        </div>
+    </div>
+
+
+
+    <!--Load JavaScript-->
+    <script type=\"text/javascript\" src=\"/assets/js/jquery.js\"></script>
+    <script type='text/javascript' src='/assets/js/imagesloaded.pkgd.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery.nicescroll.min.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery.smartmenus.min.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery.carouFredSel-6.0.0-packed.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery.mousewheel.min.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery.touchSwipe.min.js'></script>
+    <script type='text/javascript' src='/assets/js/jquery.easing.1.3.js'></script>
+    <script type='text/javascript' src='/assets/js/main.js'></script>"
 
    (when nil "<!-- Google Analytics -->
   <script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-55966581-1\"></script>
@@ -93,8 +172,8 @@
     gtag('config', 'UA-55966581-1');
   </script>")
 
-   (when nil "<script type=\"text/javascript\" src=\"/assets/js/custom.js\"> </script>
-  <script type=\"text/javascript\" src=\"//downloads.mailchimp.com/js/signup-forms/popup/embed.js\" data-dojo-config=\"usePlainJson: true, isDebug: false\"></script><script type=\"text/javascript\">require([\"mojo/signup-forms/Loader\"], function(L) { L.start({\"baseUrl\":\"mc.us18.list-manage.com\",\"uuid\":\"7e6d10e32e5355f05a9b343de\",\"lid\":\"420dab7107\"}) })</script> ")
+   (when nil "<script type=\"text/javascript\" src=\"/assets//assets/js/custom.js\"> </script>
+  <script type=\"text/javascript\" src=\"//downloads.mailchimp.com//assets/js/signup-forms/popup/embed.js\" data-dojo-config=\"usePlainJson: true, isDebug: false\"></script><script type=\"text/javascript\">require([\"mojo/signup-forms/Loader\"], function(L) { L.start({\"baseUrl\":\"mc.us18.list-manage.com\",\"uuid\":\"7e6d10e32e5355f05a9b343de\",\"lid\":\"420dab7107\"}) })</script> ")
 
    ;; DISABLED
    ;; Add Disqus if it's a post
@@ -138,7 +217,8 @@
     (save-window-excursion
       (with-current-buffer (find-file-noselect file-path)
         (goto-char (point-min))
-        (search-forward "<body>")
+        (search-forward "<body>" nil t)
+        (replace-match "<body class=\"single-post\">")
         (insert (concat "\n<div class=\"content-wrapper container\">\n "
                         "  <div class=\"row\"> <div class=\"col\"> </div> "
                         "  <div class=\"col-sm-12 col-md-10 col-lg-10\"> "))
@@ -193,7 +273,7 @@
         ("rss"
          :base-directory "~/dev/blog/src/"
          :base-extension "org"
-         :html-link-home "http://bilus.dev/"
+         :html-link-home "https://bilus.dev/"
          :html-link-use-abs-url t
          :rss-extension "xml"
          :publishing-directory "~/dev/blog/"
