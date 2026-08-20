@@ -1,0 +1,9 @@
+public/
+resources/
+.git/
+node_modules/
+
+# Nix profile symlinks; useless in the build context and large.
+.devbox/
+
+.DS_Store

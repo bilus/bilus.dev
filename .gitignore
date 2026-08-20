@@ -1,7 +1,9 @@
-.DS_Store
-.idea
-*.log
-tmp/
-
-
+# Hugo build output
 public/
+
+# Hugo module and asset caches
+resources/_gen/
+.hugo_build.lock
+
+# macOS
+.DS_Store

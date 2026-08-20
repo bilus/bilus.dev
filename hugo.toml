@@ -1,0 +1,53 @@
+baseURL = "https://bilus.dev/"
+locale = "en-us"
+title = "bilus.dev"
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+[pagination]
+  pagerSize = 10
+
+[module]
+  [[module.imports]]
+    path = "github.com/adityatelange/hugo-PaperMod"
+
+[params]
+  # PaperMod reads this to enable production-only output such as analytics
+  # and full SEO tags.
+  env = "production"
+  description = "Notes on software, mostly."
+
+  # "auto" follows the OS preference; the toggle stays visible so a reader
+  # can override it.
+  defaultTheme = "auto"
+  disableThemeToggle = false
+
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+
+# Which sections feed the home page list. Without this Hugo picks the
+# section with the most pages, which changes as content is added.
+mainSections = ["posts"]
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 20
+
+[markup.highlight]
+  noClasses = false
+  codeFences = true
+  guessSyntax = true
