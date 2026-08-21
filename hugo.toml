@@ -20,6 +20,10 @@ buildExpired = false
   env = "production"
   description = "Notes on software, mostly."
 
+  # Not a PaperMod param. Read by layouts/_partials/header.html to render the
+  # GitHub icon next to the theme toggle.
+  githubURL = "https://github.com/bilus"
+
   # "auto" follows the OS preference; the toggle stays visible so a reader
   # can override it.
   defaultTheme = "auto"
@@ -51,3 +55,8 @@ mainSections = ["posts"]
   noClasses = false
   codeFences = true
   guessSyntax = true
+
+[markup.goldmark.renderer]
+  # Posts embed hand-written HTML, such as the roadmap list. Goldmark
+  # discards raw HTML unless this is set, and does so silently.
+  unsafe = true
