@@ -1,0 +1,11 @@
+/* PaperMod's svg.html icons ship with a viewBox and no dimensions, so this one
+   would otherwise render at full width. 17px matches the theme toggle it sits
+   next to. */
+.github-link svg {
+    width: 17px;
+    height: 17px;
+}
+
+.github-link {
+    padding: 0 0.4rem;
+}
