@@ -1,0 +1,9 @@
+{{- /* Overrides PaperMod's empty extend_head.html. The theme renders this
+     inside <head> on every page, via head.html called from baseof.html. */ -}}
+
+{{- /* Rybbit's script has no localhost filter, so an ungated tag would record
+     `devbox run serve` traffic as real visits. Remove the guard to load it in
+     development too. */ -}}
+{{- if hugo.IsProduction }}
+<script src="https://stats.bilus.dev/api/script.js" data-site-id="72ebc0890e1a" defer></script>
+{{- end }}
