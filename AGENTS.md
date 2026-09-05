@@ -33,6 +33,34 @@ listing. A file elsewhere still builds but nothing links to it.
 Preview with `devbox run serve`, which includes drafts. Then commit and push to
 master. There is no separate publish or deploy step.
 
+## Audio narration
+
+Posts get a spoken version generated with ElevenLabs text to speech, through
+the ElevenLabs creative MCP server (`creative_generate_speech`).
+
+Default voice: Liam, voice id `TX3LPaxmHKxFdv7VOQHJ` ("Liam - Energetic,
+Social Media Creator", an ElevenLabs premade voice). Model: `eleven_v3`, no
+inline audio tags. Chosen on 2026-09-05 from samples by Liam, Charlie and Zane.
+Use it for every post unless asked otherwise.
+
+The narration text is the post body with the front matter removed, links
+reduced to their text, and HTML lists read as numbered items ("One: ...",
+"Two: ..."). Read the title first. Where the spelling misleads the model,
+write the sound instead: "templ" becomes "temple", initialisms get hyphens
+("A-S-T", "I-O Writer"). Keep the author's wording otherwise.
+
+Files go to `audio/<post-slug>.mp3`, named after the Markdown file. The
+directory is gitignored because the files are generated output.
+
+A generation returns a flow id and a session id. Poll
+`creative_get_flow_run_status` with them until `all_completed` is true. The
+status carries a signed download URL under `media[].url`, valid for two hours.
+Fetch it with curl into `audio/`.
+
+Pricing is about one credit per character, so a 3,500 character post costs
+roughly 3,500 credits (about 60 US cents in September 2026). Pass
+`estimate_only` first for anything long.
+
 ## Hosting
 
 Dokploy runs the site as an application named `blog.bilus.dev` in the Tools

@@ -1,0 +1,15 @@
+/* The play control renders inside PaperMod's .post-meta line and inherits that
+   line's font size, so only the interactive parts are set here. */
+.post-meta .listen {
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.post-meta .listen:hover .listen-label {
+    text-decoration: underline;
+}
+
+/* The label carries the action; the attribution recedes to the meta line's tone. */
+.post-meta .listen .listen-note {
+    color: var(--secondary);
+}

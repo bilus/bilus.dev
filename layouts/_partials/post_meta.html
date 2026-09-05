@@ -1,0 +1,65 @@
+{{- /* Forked from PaperMod v0.0.0-20260802175912-d3768854d00a to add the audio
+     play control. Re-diff against upstream when bumping the theme. */ -}}
+{{- $scratch := newScratch }}
+
+{{- if not .Date.IsZero -}}
+    {{- $scratch.Add "meta" (slice (printf "<span title='%s'>%s</span>" (.Date) (.Date | time.Format (default ":date_long" site.Params.DateFormat)))) }}
+{{- end }}
+
+{{- if (.Param "ShowReadingTime") -}}
+    {{- $scratch.Add "meta" (slice (printf "<span>%s</span>" (i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime)))) }}
+{{- end }}
+
+{{- if (.Param "ShowWordCount") -}}
+    {{- $scratch.Add "meta" (slice (printf "<span>%s</span>" (i18n "words" .WordCount | default (printf "%d words" .WordCount)))) }}
+{{- end }}
+
+{{- if not (.Param "hideAuthor") -}}
+    {{- with (partial "author.html" .) }}
+        {{- $scratch.Add "meta" (slice (printf "<span>%s</span>" .)) }}
+    {{- end }}
+{{- end }}
+
+{{- /* Only on the article's own page. This partial also runs for every entry in
+     list views, where the control would land outside .post-meta and its script
+     would not reach it. Comparing the rendered page with the described page
+     isolates the single view. */ -}}
+{{- if and .Params.audio (eq page.RelPermalink .RelPermalink) -}}
+  {{- with .Params.audio -}}
+    {{- /* The theme's opengraph partial also reads .Params.audio and ranges over it,
+         so a list is the canonical shape. Take the first entry, but tolerate a
+         bare string so this control renders either way. */ -}}
+    {{- $src := . -}}
+    {{- if reflect.IsSlice . }}{{ $src = index . 0 }}{{ end -}}
+    {{- $scratch.Add "meta" (slice (printf `<a class="listen" href="%s"><span class="listen-label">&#9654; Play</span> <span class="listen-note">(AI voice)</span></a>` $src)) }}
+  {{- end }}
+{{- end }}
+
+{{/* Combine all meta information into a single string with separators and render it as HTML.*/}}
+
+{{- with ($scratch.Get "meta") }}
+    {{- delimit . "&nbsp;·&nbsp;" | safeHTML -}}
+{{- end -}}
+
+{{- if and .Params.audio (eq page.RelPermalink .RelPermalink) }}
+<script>
+(function () {
+  var link = document.querySelector(".post-meta .listen");
+  if (!link) return;
+  var label = link.querySelector(".listen-label");
+  var audio;
+  function play() { label.innerHTML = "&#9208; Pause"; }
+  function stop() { label.innerHTML = "&#9654; Play"; }
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (!audio) {
+      audio = new Audio(link.getAttribute("href"));
+      audio.addEventListener("play", play);
+      audio.addEventListener("pause", stop);
+      audio.addEventListener("ended", stop);
+    }
+    if (audio.paused) { audio.play(); } else { audio.pause(); }
+  });
+})();
+</script>
+{{- end }}
