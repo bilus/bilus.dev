@@ -1,7 +1,7 @@
 ---
 title: "Maintainer agents"
 date: 2026-09-05
-draft: true
+draft: false
 tags: ["ai", "agents", "architecture"]
 summary: "A wild idea I have not tried yet: give every package in a codebase its own maintainer agent, show the other agents only the interface, and route every change through the owner."
 audio: ["https://blog-assets.bilus.dev/audio/agent-maintainers.mp3"]
