@@ -32,6 +32,11 @@
     {{- $src := . -}}
     {{- if reflect.IsSlice . }}{{ $src = index . 0 }}{{ end -}}
     {{- $scratch.Add "meta" (slice (printf `<a class="listen" href="%s"><span class="listen-label">&#9654; Play</span> <span class="listen-note">(AI voice)</span></a>` $src)) }}
+    {{- /* The play control calls preventDefault, so its href never opens. This is
+         the followable one. The download attribute is advisory: browsers honour
+         it only same-origin, and the file is on another host, so a click opens
+         the mp3 rather than saving it. */ -}}
+    {{- $scratch.Add "meta" (slice (printf `<a class="listen-file" href="%s" download>mp3</a>` $src)) }}
   {{- end }}
 {{- end }}
 

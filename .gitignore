@@ -11,3 +11,6 @@ resources/_gen/
 # Generated narration, see AGENTS.md
 audio/
 /.claude/
+
+# Wrangler local state, written when uploading audio to R2
+.wrangler/

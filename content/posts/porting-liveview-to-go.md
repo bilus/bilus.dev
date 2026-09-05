@@ -2,7 +2,7 @@
 title: "Oh no, not again, or: Porting Phoenix LiveView to Go"
 date: 2026-08-20
 draft: false
-audio: ["https://example.com/fake-preview.mp3"]  # TEMPORARY local preview, remove
+audio: ["https://blog-assets.bilus.dev/audio/porting-liveview-to-go.mp3"]
 tags: ["go", "elixir", "liveview", "templ"]
 summary: "Why I'm porting Phoenix LiveView to Go, the rules I'm setting to avoid stalling like the attempts before mine, and the first four milestones."
 ---
